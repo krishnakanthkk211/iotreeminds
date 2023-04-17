@@ -2,11 +2,19 @@
   "dependencies": {
     "axios": "^1.3.5",
     "bcrypt": "^5.1.0",
+    "convert-excel-to-json": "^1.7.0",
     "cors": "^2.8.5",
+    "excel-to-json": "^1.0.0",
     "express": "^4.18.2",
+    "extra-fs": "^3.2.17",
     "jsonwebtoken": "^9.0.0",
+    "mongodb": "^5.2.0",
     "mongoose": "^7.0.3",
+    "multer": "^1.4.5-lts.1",
     "mypackage": "^0.1.0",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "util": "^0.12.5",
+    "utils": "^0.3.1",
+    "xlsx": "^0.18.5"
   }
 }

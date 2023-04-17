@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios'
+
 import Register from './Register'
 export const Login = (props) => {
     const [email, setEmail] = useState();
@@ -9,21 +10,21 @@ export const Login = (props) => {
         e.preventDefault();
         console.log(email);
     }
-    const [currentForm, setCurrentForm] = useState('login');
-    const toggleForm = (formName) => {
-        setCurrentForm(formName);
-      }
+    // const [currentForm, setCurrentForm] = useState('login');
+    // const toggleForm = (formName) => {
+    //     setCurrentForm(formName);
+    //   }
     const login=(e)=>{
          e.preventDefault()
          let obj={
             email:email,
             password:password
          }
-         axios.post("http://localhost:3000/login",obj).then((res)=>{
+         axios.post("http://localhost:4000/login",obj).then((res)=>{
             console.log(res)
             localStorage.setItem('token',res.data.data.token)
             localStorage.setItem('user',JSON.stringify(res.data.data))
-            // window.location('/dashboard')
+             window.location('/Dashboard')
          }).catch((err) => { alert(err.response.data.message) })
     }
 
@@ -35,10 +36,13 @@ export const Login = (props) => {
                 <input value={email} onChange={(e) => setEmail(e.target.value)}type="email" placeholder="youremail@gmail.com" id="email" name="email" />
                 <label htmlFor="password">password</label>
                 <input value={password} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" />
-                <button type="submit" onClick={login}>LogIn</button>
+                <button type="submit" onClick={login} >LogIn</button>
             </form>
-            <button className="link-btn" onClick={() => props.onFormSwitch('register')}>Don't have an account? Register here.</button>
-           {/* <button className="link-btn" onClick={Register}>Register</button> */}
+            {/* <button className="link-btn" onClick={() => props.onFormSwitch('register')}>Don't have an account? Register here.</button> */}
+               <div className="link-btn">
+					Don't have an account? <a href="/register">Sign Up</a>
+			   </div>
         </div>
     )
 }
+

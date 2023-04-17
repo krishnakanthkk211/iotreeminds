@@ -1,28 +1,7 @@
-const express=require("express")
-const mongoose=require("mongoose")
-const router=require("./routes/route")
-const multer =require('multer')
-const excelTojson=require('convert-excel-to-json')
-const fs=require('fs')
-const XLSX=require('xlsx')
-var cors=require('cors')
-const app=express()
-app.use(cors())
-app.set('view engine','ejs')
-app.use(express.json())
-
-
-
-
-mongoose.connect("mongodb+srv://krishnakanthkk211:krishna211@cluster0.j8rhn47.mongodb.net/krishnakanthkk211-DB"
-,{useNewUrlparser:true})
-
-.then(()=>console.log('MongoDb is connected'))
-.catch((err)=>console.log(err))
-
-
-
-var workbook = XLSX.readFile("./controller/account.xlsx");
+const express=require('express')
+const multer=require('multer')
+var XLSX = require("xlsx");
+var workbook = XLSX.readFile("account.xlsx");
 var sheet_name_list = workbook.SheetNames;
 console.log(sheet_name_list); // getting as Sheet1
 
@@ -59,13 +38,4 @@ sheet_name_list.forEach(function (y) {
   data.shift();
   data.shift();
   console.log(data);
-
 });
-
-app.post('/transactions',)
-
-
-app.listen(4000,function(){
-    console.log('server running on 4000')
-})
-

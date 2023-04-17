@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios'
-export const Register = (props) => {
+export let Register = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPass] = useState('');
     const [name, setName] = useState('');
@@ -9,22 +9,19 @@ export const Register = (props) => {
         e.preventDefault();
         console.log(email);
     }
-    const config = {
-        headers: {
-            'content-type': 'multipart/form-data'
-        },
-    };
+    
 
-    const register=(e)=>{
+    let register=(e)=>{
         e.preventDefault()
         let obj={
            email:email,
            password:password,
            name:name
         }
-        axios.post("http://localhost:3000/register",obj,config).then((res)=>{
+        console.log(obj)
+        axios.post("http://localhost:4000/register",obj).then((res)=>{
            alert('registered successfully')
-         window.location('/')
+         window.location('/Dashboard')
         }).catch((err) => { alert(err.response.data.message) })
    }
 
@@ -38,9 +35,14 @@ export const Register = (props) => {
             <input value={email} onChange={(e) => setEmail(e.target.value)}type="email" placeholder="youremail@gmail.com" id="email" name="email" />
             <label htmlFor="password">password</label>
             <input value={password} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" />
-            <button type="submit"onClick={register}>Register</button>
+            {/* <button type="submit"onClick={register}>Register</button> */}
+            <button type="submit" onClick={register}>Register</button>
+                   <a id='logins' href='/'>Login</a> 
         </form>
-        <button className="link-btn" onClick={() => props.onFormSwitch('login')}>Already have an account? Login here.</button>
+        {/* <button className="link-btn" onClick={() => props.onFormSwitch('login')}>Already have an account? Login here.</button> */}
+       
+                    {/* <a id='logins' href='/'>Login</a> */}
     </div>
     )
 }
+
